@@ -3,7 +3,7 @@
   <v-flex xs6 offset-xs3 class="adjust">
     <div class="white elevation-2">
       <v-toolbar flat dense dark class="cyan">
-        <v-toolbar-title> Register </v-toolbar-title>
+        <v-toolbar-title> Login </v-toolbar-title>
       </v-toolbar>
         <div class="pl-4 pr-4 pt-2 pb-2">
          <v-text-field class="inpt-group--focused" v-model="email" type="email" name="email" label="Enter your email" />
@@ -12,7 +12,7 @@
           <br>
           <div v-html="error" class="error"/>
           <br>
-          <v-btn v-on:click="register" dark class="cyan">Register</v-btn>
+          <v-btn v-on:click="login" dark class="cyan">Login</v-btn>
           </div>
       </div>
      </v-flex>
@@ -30,9 +30,9 @@ export default {
     }
   },
   methods: {
-    async register () {
+    async login () {
       try {
-        await AuthenticationService.register({
+        await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
