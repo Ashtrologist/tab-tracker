@@ -4,13 +4,16 @@ const cors = require('cors')
 const morgan = require('morgan')
 const {sequelize} = require('./models')
 const config = require('./config/config')
-
+const AuthenticationController = require('./controllers/AuthenticationController')
+const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy')
 const app = express()
 app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
 
-require('./routes')
+// require('./routes')
+app.post('/register', AuthenticationControllerPolicy.register, AuthenticationController.register)
+app.post('/login', AuthenticationController.login)
 
 sequelize.sync()
   .then(() => {
